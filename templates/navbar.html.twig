@@ -1,3 +1,16 @@
-<div class="my_navbar w-100 text-center">
-    <img class='img' src="images/logo.png" alt="logo de la société Angelus Cosy Immo">
+<div class="sticky-one" id="navbar">
+    <div id="logo-circle" class="position-absolute disappear">
+        <img src="{{ asset('build/images/logo_circle.png') }}" alt="Logo de l'entreprise sans le texte">
+        Angelus Cosy IMMO
+    </div>
+    <div class="my_navbar w-100 text-center">
+        <a href="{{ path('home') }}">
+            <img id="logo_menu" class='img is-not-reduce' src="{{ asset('build/images/logo.png') }}" alt="logo de la société Angelus Cosy Immo">
+        </a>
+    </div>
+    <div class="menu d-flex flew-row justify-content-center">
+            <div class="link"><a href="{{ path('team') }}"{{ app.request.pathInfo == '/team' ? ' class="focus"' : '' }}>Team</a></div>
+            <div class="link"><a href="{{ path('projects') }}"{{ app.request.pathInfo == '/projects' ? ' class="focus"' : '' }}>Projets</a></div>
+            <div class="link"><a href="{{ path('contact') }}"{{ app.request.pathInfo == '/contact' ? ' class="focus"' : '' }}>Contact</a></div>
+    </div>
 </div>

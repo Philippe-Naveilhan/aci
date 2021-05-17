@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat&display=swap');
+@import "~bootstrap/scss/bootstrap";
+
+//font-family: 'Italiana', serif;
+//font-family: 'Montserrat', sans-serif;
+
+$color-light: #EED9BC;
+$color-dark: #876A42;
+$color3: #000;
+
+*{
+    color: $color-dark;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+}
+section{
+    padding-bottom: 48px;
+}
+.sticky-one{
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+}
+button{
+    border-radius: 16px;
+    padding: 4px 8px;
+    background-color: $color-light;
+    border : solid 1px $color-dark;
+    color: $color-dark;
+}
+button:hover{
+    color: $color-light;
+    background-color: $color-dark;
+    font-weight: 700;
+}
+#navbar{
+    z-index: 100;
+    min-height: 96px;
+    background-color: whitesmoke;
+    border-bottom: 4px $color-dark solid;
+    .menu{
+        width: 400px;
+        margin: auto;
+        margin-bottom:8px;
+    }
+    .link{
+        width: 120px;
+        text-align: center;
+    }
+    a{
+        font-size: 24px;
+        font-family: 'Italiana', serif;
+        text-decoration: none;
+        color: currentColor;
+    }
+    a:hover, .focus{
+        font-weight: 700;
+    }
+    .my_navbar img {
+        max-width: 100%;
+    }
+    .is-not-reduce {
+        max-height: 150px;
+        transition: 1s;
+    }
+    .is-reduce {
+        max-height: 1px;
+        transition: 1s;
+    }
+    #logo-circle{
+        top:8px;
+        left:8px;
+        img{
+            width: 72px;
+        }
+    }
+    .disappear{
+        opacity: 0;
+        transition: 1s;
+    }
+    .appear{
+        opacity: 1;
+        transition: 1s;
+    }
+}
+#video-fond {
+    max-height: 400px;
+    overflow: hidden;
+    video {
+        width: 100%;
+    }
+}
+#team{
+    padding-top:48px;
+    .img{
+        border: solid 1px $color-light;
+        overflow: hidden;
+        img{
+            width: 360px;
+            object-fit: contain;
+        }
+    }
+    .img-r{
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+    .img-l{
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+    }
+    .line{
+        width: 50px;
+        border: solid 1px $color-light;
+    }
+    .text{
+        width: 360px;
+        border-left: solid 1px $color-light;
+        border-right: solid 1px $color-light;
+        padding: 0 8px;
+    }
+}
+#houses{
+    border-top: 4px $color-dark solid;
+    border-bottom: 4px $color-dark solid;
+    background-color: $color-light;
+    .card-house{
+        width: 740px;
+        padding-top: 96px;
+        .title{
+            font-family: 'Italiana', serif;
+            z-index: 20;
+            color: $color-dark;
+            font-size: 48px;
+            top: 24px;
+            left : 96px;
+        }
+        .infos{
+            background-color: rgba(245,245,245,0.6);
+            height: 160px;
+            width: 240px;
+            z-index: 10;
+            color: $color-dark;
+            font-size: 16px;
+            top: 32px;
+            left : -104px;
+            padding: 32px 8px;
+        }
+        .image{
+            z-index: 5;
+            width: 370px;
+        }
+        .description{
+            background-color: rgba(245,245,245,0.6);
+            height: 176px;
+            width: 480px;
+            z-index: 4;
+            color: $color-dark;
+            font-size: 14px;
+            top: 192px;
+            left : 300px;
+            padding: 24px 0 0 80px;
+        }
+    }
+    .serie{
+        margin-top: 48px;
+        width: 100%;
+        .mini{
+            height: 80px;
+            width: 80px;
+            border: solid 1px $color-dark;
+        }
+    }
+}
+#contact{
+    padding-top: 48px;
+}
+#footer{
+    border-top: solid 4px $color-light;
+    padding-top: 36px;
+    height: 150px;
+    background-color: $color-dark;
+    color: $color-light;
+}
+.footer div{
+    color: $color-light;
+}
