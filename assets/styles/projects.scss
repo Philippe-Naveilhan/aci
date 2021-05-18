@@ -1,0 +1,18 @@
+#projects{
+  .bloc{
+    border: solid 1px $color-light;
+  }
+  .title{
+    background: $color-light;
+    color: $color-dark;
+    font-family: 'Italiana', serif;
+    font-size: 24px;
+    padding: 8px 16px;
+  }
+  .description{
+    background-color: $color-light;
+    color: $color-dark;
+    padding: 24px;
+  }
+}
+

@@ -3,18 +3,42 @@
 {% block title %}Hello ProjectsController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <section id="projects" class="mt-5">
+        {% for i in 0..3 %}
+        <div class="bloc col-10 offset-1 mb-5">
+            <div class="title">On resterait bien au Lilles ce matin...</div>
+            <div class="my-5 row col-10 offset-1">
+                <div class="pictures col-6 d-flex flex-column p-0">
+                    <div class="d-flex flex-row">
+                        <div class="first col-8 m-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}"></div>
+                        <div class="column m-0 col-4 d-flex flex-column">
+                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}" alt=""></div>
+                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="line d-flex flex-row">
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}"></div>
+                    </div>
+                </div>
+                <div class="details col-5 offset-1 pt-2 pl-4">
+                    <p><i class="h3 bi bi-geo pr-5"></i> 59200 LILLES</p>
+                    <p><i class="h3 bi bi-tag mr-2"></i> 282.000 € HFN</p>
+                    <p><i class="h3 bi bi-rulers mr-2"></i> 218 m2</p>
+                    <p><i class="h3 bi bi-columns-gap mr-2"></i> 7 pièces</p>
+                    <p><i class="h3 bi bi-wifi mr-2"></i> Fibre</p>
+                    <button class="mt-3"><i class="h3 bi bi-images"></i> Plus de photos...</button>
+                </div>
+            </div>
+            <div class="description col-10 offset-1 mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque consequatur ea enim in sapiente suscipit voluptas. Architecto at cum, doloremque exercitationem harum iusto minus odit, quibusdam quisquam repellat voluptatibus?
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}
+{% block javascripts %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/media/naveilhan/DONNEES/projets/aci/src/Controller/ProjectsController.php'|file_link(0) }}">src/Controller/ProjectsController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/media/naveilhan/DONNEES/projets/aci/templates/projects/index.html.twig'|file_link(0) }}">templates/projects/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
