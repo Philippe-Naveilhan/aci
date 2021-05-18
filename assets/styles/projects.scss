@@ -1,17 +1,60 @@
 #projects{
+  background-color: $color-light;
+  h1{
+    font-family: 'Italiana', serif;
+  }
   .bloc{
-    border: solid 1px $color-light;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    border: double 4px $color-dark;
+    box-shadow: 0 4px 4px #876A42AA;
   }
   .title{
     background: $color-light;
     color: $color-dark;
+    border-bottom: solid 1px $color-dark;
     font-family: 'Italiana', serif;
-    font-size: 24px;
+    font-size: 32px;
     padding: 8px 16px;
   }
   .description{
     background-color: $color-light;
     color: $color-dark;
+    padding: 24px;
+  }
+  #carousel{
+    box-shadow: 0 4px 4px #876A42AA;
+    .arrow{
+      box-shadow: 0 4px 4px #876A42AA;
+      z-index:50;
+      height: 48px;
+      width: 48px;
+      border-radius: 50%;
+      color: $color-light;
+      background-color: $color-dark;
+      .interior{
+        height: 40px;
+        width: 40px;
+        font-size: 32px;
+        border-radius: 50%;
+        border: solid 2px $color-light;
+        color: $color-light;
+      }
+      .interior:hover{
+        color: $color-dark;
+        background-color: $color-light;
+      }
+    }
+    .arrow-l{
+      left: -30px;
+    }
+    .arrow-r{
+      left: 870px;
+    }
+    width: 900px;
+    border: solid 4px $color-dark;
+    border-radius: 2px;
+    background-color: whitesmoke;
     padding: 24px;
   }
 }

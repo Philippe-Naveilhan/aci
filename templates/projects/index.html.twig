@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProjectsController!{% endblock %}
+{% block title %}Nos biens, bientôt les vôtres...{% endblock %}
 
 {% block body %}
-    <section id="projects" class="mt-5">
-        {% for i in 0..3 %}
+    <section id="projects" class="mt-0 pt-5">
+        <h1 class="w-100 text-center mt-3 mb-5">Nos biens, bientôt les vôtres...</h1>
         <div class="bloc col-10 offset-1 mb-5">
-            <div class="title">On resterait bien au Lilles ce matin...</div>
-            <div class="my-5 row col-10 offset-1">
+            <div class="title w-100 text-center">Cocoon'Lilles</div>
+            <div class="my-3 row col-10 offset-1 align-items-center">
                 <div class="pictures col-6 d-flex flex-column p-0">
                     <div class="d-flex flex-row">
                         <div class="first col-8 m-0"><img class="w-100" src="{{ asset('build/images/interiors.webp') }}"></div>
@@ -24,19 +24,56 @@
                     </div>
                 </div>
                 <div class="details col-5 offset-1 pt-2 pl-4">
-                    <p><i class="h3 bi bi-geo pr-5"></i> 59200 LILLES</p>
-                    <p><i class="h3 bi bi-tag mr-2"></i> 282.000 € HFN</p>
-                    <p><i class="h3 bi bi-rulers mr-2"></i> 218 m2</p>
-                    <p><i class="h3 bi bi-columns-gap mr-2"></i> 7 pièces</p>
-                    <p><i class="h3 bi bi-wifi mr-2"></i> Fibre</p>
-                    <button class="mt-3"><i class="h3 bi bi-images"></i> Plus de photos...</button>
+                    <p class="h5"><i class="h4 bi bi-geo pr-5"></i> 59200 LILLES</p>
+                    <p class="h5"><i class="h4 bi bi-tag mr-2"></i> 282.000 € HFN</p>
+                    <p class="h5"><i class="h4 bi bi-rulers mr-2"></i> 218 m2</p>
+                    <p class="h5"><i class="h4 bi bi-columns-gap mr-2"></i> 7 pièces</p>
+                    <p class="h5"><i class="h4 bi bi-wifi mr-2"></i> Fibre Optique</p>
+{#                    <button class="mt-3"><i class="h3 bi bi-images"></i> Plus de photos...</button>#}
                 </div>
             </div>
-            <div class="description col-10 offset-1 mb-5">
+            <div class="description col-10 offset-1 mb-3">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque consequatur ea enim in sapiente suscipit voluptas. Architecto at cum, doloremque exercitationem harum iusto minus odit, quibusdam quisquam repellat voluptatibus?
             </div>
         </div>
-        {% endfor %}
+
+        <div id="carousel" class="mx-auto d-flex flex-wrap align-items-center position-relative">
+
+{#            left arrow #}
+            <div class="arrow arrow-l position-absolute d-flex align-items-center justify-content-center">
+                <div class="interior d-flex align-items-center justify-content-center">
+                    <div><i class="bi bi-caret-left-fill"></i></div>
+                </div>
+            </div>
+{#            end left arrow #}
+
+{#            picture and description #}
+            <div class="image col-8 p-3">
+                <img src="{{ asset('build/images/interiors.webp') }}" alt="" class="w-100">
+            </div>
+            <div class="text col-4">
+                <p>Première chambre</p>
+                <p>Cette chambre de 24m2 ravira vos réveils avec sa vue sur le parc.<br> Orientée sud, elle se laisse inondée de lumière toute la journée.</p>
+            </div>
+{#            end picture and description #}
+
+{#            right arrow #}
+            <div class="arrow arrow-r position-absolute d-flex align-items-center justify-content-center">
+                <div class="interior d-flex align-items-center justify-content-center">
+                    <div><i class="bi bi-caret-right-fill"></i></div>
+                </div>
+            </div>
+{#            end right arrow #}
+
+{#            picos represents pictures #}
+            <div class="w-100 text-center">
+                <i class="bi bi-circle-fill"></i>
+                {% for i in 0..10 %}
+                    <i class="bi bi-circle"></i>
+                {% endfor %}
+            </div>
+{#            end picos #}
+        </div>
     </section>
 {% endblock %}
 {% block javascripts %}
