@@ -1,0 +1,16 @@
+.contact{
+  margin-top: 48px;
+  align-items: center;
+  .address{
+    padding-left: 16px;
+    border-left: solid 1px $color-dark;
+  }
+  .picture{
+    height: 450px;
+    overflow: hidden;
+    img{
+      width: 100%;
+    }
+  }
+}
+
