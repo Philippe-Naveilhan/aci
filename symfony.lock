@@ -17,6 +17,22 @@
     "doctrine/lexer": {
         "version": "1.2.1"
     },
+    "imagine/imagine": {
+        "version": "1.2.4"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "5a5bdc2d0e2533ed6935d5ae562f2b318a8fc1ee"
+        },
+        "files": [
+            "config/packages/liip_imagine.yaml",
+            "config/routes/liip_imagine.yaml"
+        ]
+    },
     "nikic/php-parser": {
         "version": "v4.10.5"
     },
@@ -144,6 +160,9 @@
     "symfony/mime": {
         "version": "v5.0.11"
     },
+    "symfony/options-resolver": {
+        "version": "v5.0.11"
+    },
     "symfony/polyfill-intl-idn": {
         "version": "v1.22.1"
     },
@@ -158,6 +177,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.22.1"
+    },
+    "symfony/process": {
+        "version": "v5.0.11"
     },
     "symfony/routing": {
         "version": "4.2",
