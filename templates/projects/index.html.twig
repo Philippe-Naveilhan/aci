@@ -40,7 +40,7 @@
         <div id="carousel" class="mx-auto d-flex flex-wrap align-items-center position-relative">
 
 {#            left arrow #}
-            <div class="arrow arrow-l position-absolute d-flex align-items-center justify-content-center">
+            <div onclick="changeCard('left')" class="arrow arrow-l position-absolute d-flex align-items-center justify-content-center">
                 <div class="interior d-flex align-items-center justify-content-center">
                     <div><i class="bi bi-caret-left-fill"></i></div>
                 </div>
@@ -48,34 +48,70 @@
 {#            end left arrow #}
 
 {#            picture and description #}
-            <div class="image col-8 p-3">
+            <div id="picture" class="image col-8 p-3 overflow-hidden">
                 <img src="{{ asset('build/images/interiors.webp') }}" alt="" class="w-100">
             </div>
             <div class="text col-4">
-                <p>Première chambre</p>
-                <p>Cette chambre de 24m2 ravira vos réveils avec sa vue sur le parc.<br> Orientée sud, elle se laisse inondée de lumière toute la journée.</p>
+                <p id="card_title" class="">Première chambre</p>
+                <p id="card_description">Cette chambre de 24m2 ravira vos réveils avec sa vue sur le parc.<br> Orientée sud, elle se laisse inondée de lumière toute la journée.</p>
             </div>
 {#            end picture and description #}
 
 {#            right arrow #}
-            <div class="arrow arrow-r position-absolute d-flex align-items-center justify-content-center">
+            <div onclick="changeCard('right')" class="arrow arrow-r position-absolute d-flex align-items-center justify-content-center">
                 <div class="interior d-flex align-items-center justify-content-center">
                     <div><i class="bi bi-caret-right-fill"></i></div>
                 </div>
             </div>
 {#            end right arrow #}
 
-{#            picos represents pictures #}
-            <div class="w-100 text-center">
-                <i class="bi bi-circle-fill"></i>
-                {% for i in 0..10 %}
-                    <i class="bi bi-circle"></i>
-                {% endfor %}
+            <div id="count" class="w-100 text-center">
             </div>
-{#            end picos #}
         </div>
     </section>
+    <div class="visually-hidden">
+        {% for image in array %}
+            <img src="build/public/images/{{ image[1] }}" alt="{{ image[2] }}">
+        {% endfor %}
+    </div>
 {% endblock %}
 {% block javascripts %}
-
+    <script>
+        let array = {{ array|json_encode|raw }};
+        let i = 0;
+        document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
+        function changeCard(direction){
+            if(direction=='right'){
+                if(i!==array.length-1){
+                    i++;
+                } else {
+                    i=0;
+                }
+            } else {
+                if(i!==0){
+                    i--;
+                } else {
+                    i = array.length-1;
+                }
+            }
+            document.getElementById("card_title").classList.remove("appear");
+            document.getElementById("card_title").classList.add("disappear");
+            document.getElementById("card_description").classList.remove("appear");
+            document.getElementById("card_description").classList.add("disappear");
+            document.getElementById("picture").classList.remove("appear");
+            document.getElementById("picture").classList.add("disappear");
+            setTimeout(function e(){
+                document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
+                document.getElementById("card_title").innerHTML = array[i][0];
+                document.getElementById("card_description").innerHTML = array[i][2];
+                document.getElementById("picture").innerHTML = "<img src='build/images/" + array[i][1] + "' alt='' class='w-100'>";
+                document.getElementById("card_title").classList.remove("disappear");
+                document.getElementById("card_title").classList.add("appear");
+                document.getElementById("card_description").classList.remove("disappear");
+                document.getElementById("card_description").classList.add("appear");
+                document.getElementById("picture").classList.remove("disappear");
+                document.getElementById("picture").classList.add("appear");
+            }, 700);
+        }
+    </script>
 {% endblock %}
