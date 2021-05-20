@@ -23,6 +23,13 @@
     padding: 24px;
   }
   #carousel{
+    height: 460px;
+    width: 900px;
+    border: solid 4px $color-dark;
+    border-radius: 2px;
+    background-color: whitesmoke;
+    padding: 24px;
+    box-shadow: 0 4px 4px #876A42AA;
     .appear{
       opacity: 1;
       transition: 500ms;
@@ -31,7 +38,6 @@
       opacity: 0;
       transition: 500ms;
     }
-    box-shadow: 0 4px 4px #876A42AA;
     .arrow{
       box-shadow: 0 4px 4px #876A42AA;
       z-index:50;
@@ -59,11 +65,6 @@
     .arrow-r{
       left: 870px;
     }
-    width: 900px;
-    border: solid 4px $color-dark;
-    border-radius: 2px;
-    background-color: whitesmoke;
-    padding: 24px;
   }
   #picture{
     img{
