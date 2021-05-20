@@ -11,7 +11,7 @@
         </a>
     </div>
     <div class="menu d-flex flew-row justify-content-center">
-{#            <div class="link"><a href="{{ path('team') }}"{{ app.request.pathInfo == '/team' ? ' class="focus"' : '' }}>Nous</a></div>#}
+            <div class="link"><a href="{{ path('home') }}"{{ app.request.pathInfo == '/' ? ' class="focus"' : '' }}>Accueil</a></div>
             <div class="link"><a href="{{ path('projects') }}"{{ app.request.pathInfo == '/projects' ? ' class="focus"' : '' }}>Nos biens</a></div>
             <div class="link"><a href="{{ path('contact') }}"{{ app.request.pathInfo == '/contact' ? ' class="focus"' : '' }}>Contact</a></div>
     </div>

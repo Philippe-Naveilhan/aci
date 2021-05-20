@@ -1,20 +1,117 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProjectsController!{% endblock %}
+{% block title %}Nos biens, bientôt les vôtres...{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <section id="projects" class="mt-0 pt-5">
+        <h1 class="w-100 text-center mt-1 mb-5">Nos biens, bientôt les vôtres...</h1>
+        <div class="bloc col-10 offset-1 mb-5">
+            <div class="title w-100 text-center">Cocoon'Lilles</div>
+            <div class="my-3 row col-10 offset-1 align-items-center">
+                <div class="pictures col-6 d-flex flex-column p-0">
+                    <div class="d-flex flex-row">
+                        <div class="first col-8 m-0"><img class="w-100" src="{{ asset('build/images/interiors.webp')|imagine_filter('sizeOne') }}"></div>
+                        <div class="column m-0 col-4 d-flex flex-column">
+                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-1.webp')|imagine_filter('sizeOne') }}" alt=""></div>
+                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-2.webp')|imagine_filter('sizeOne') }}" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="line d-flex flex-row">
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-3.webp')|imagine_filter('sizeOne') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-4.webp')|imagine_filter('sizeOne') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-5.webp')|imagine_filter('sizeOne') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp')|imagine_filter('sizeOne') }}"></div>
+                    </div>
+                </div>
+                <div class="details col-5 offset-1 pt-2 pl-4">
+                    <p class="h5"><i class="h4 bi bi-geo pr-5"></i> 59200 LILLES</p>
+                    <p class="h5"><i class="h4 bi bi-tag mr-2"></i> 282.000 € HFN</p>
+                    <p class="h5"><i class="h4 bi bi-rulers mr-2"></i> 218 m2</p>
+                    <p class="h5"><i class="h4 bi bi-columns-gap mr-2"></i> 7 pièces</p>
+                    <p class="h5"><i class="h4 bi bi-wifi mr-2"></i> Fibre Optique</p>
+{#                    <button class="mt-3"><i class="h3 bi bi-images"></i> Plus de photos...</button>#}
+                </div>
+            </div>
+            <div class="description col-10 offset-1 mb-3">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque consequatur ea enim in sapiente suscipit voluptas. Architecto at cum, doloremque exercitationem harum iusto minus odit, quibusdam quisquam repellat voluptatibus?
+            </div>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div id="carousel" class="mx-auto d-flex flex-wrap align-items-center position-relative">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/media/naveilhan/DONNEES/projets/aci/src/Controller/ProjectsController.php'|file_link(0) }}">src/Controller/ProjectsController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/media/naveilhan/DONNEES/projets/aci/templates/projects/index.html.twig'|file_link(0) }}">templates/projects/index.html.twig</a></code></li>
-    </ul>
-</div>
+{#            left arrow #}
+            <div onclick="changeCard('left')" class="arrow arrow-l position-absolute d-flex align-items-center justify-content-center">
+                <div class="interior d-flex align-items-center justify-content-center">
+                    <div><i class="bi bi-caret-left-fill"></i></div>
+                </div>
+            </div>
+{#            end left arrow #}
+
+{#            picture and description #}
+            <div id="picture" class="image col-8 p-3 overflow-hidden">
+                <img src="{{ asset('build/images/interiors.webp')|imagine_filter('sizeOne') }}" alt="" class="w-100">
+            </div>
+            <div class="text col-4">
+                <p id="card_title" class="">Première chambre</p>
+                <p id="card_description">Cette chambre de 24m2 ravira vos réveils avec sa vue sur le parc.<br> Orientée sud, elle se laisse inondée de lumière toute la journée.</p>
+            </div>
+{#            end picture and description #}
+
+{#            right arrow #}
+            <div onclick="changeCard('right')" class="arrow arrow-r position-absolute d-flex align-items-center justify-content-center">
+                <div class="interior d-flex align-items-center justify-content-center">
+                    <div><i class="bi bi-caret-right-fill"></i></div>
+                </div>
+            </div>
+{#            end right arrow #}
+
+            <div id="count" class="w-100 text-center">
+            </div>
+        </div>
+    </section>
+    <div class="visually-hidden">
+        {% for image in array %}
+            <img src="build/public/images/{{ image[1] }}" alt="{{ image[2] }}">
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        let array = [{% for picture in array %}["{{ picture[0]|raw }}","{{ picture[1]|raw }}","{{ picture[2]|raw }}"],{% endfor %}];
+        let i = 0;
+        document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
+        function changeCard(direction){
+            if(direction=='right'){
+                if(i!==array.length-1){
+                    i++;
+                } else {
+                    i=0;
+                }
+            } else {
+                if(i!==0){
+                    i--;
+                } else {
+                    i = array.length-1;
+                }
+            }
+            document.getElementById("card_title").classList.remove("appear");
+            document.getElementById("card_title").classList.add("disappear");
+            document.getElementById("card_description").classList.remove("appear");
+            document.getElementById("card_description").classList.add("disappear");
+            document.getElementById("picture").classList.remove("appear");
+            document.getElementById("picture").classList.add("disappear");
+            setTimeout(function e(){
+                document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
+                document.getElementById("card_title").innerHTML = array[i][0];
+                document.getElementById("card_description").innerHTML = array[i][2];
+                document.getElementById("picture").innerHTML = "<img src='build/images/" + array[i][1] + "' alt='' class='w-100'>";
+                document.getElementById("card_title").classList.remove("disappear");
+                document.getElementById("card_title").classList.add("appear");
+                document.getElementById("card_description").classList.remove("disappear");
+                document.getElementById("card_description").classList.add("appear");
+                document.getElementById("picture").classList.remove("disappear");
+                document.getElementById("picture").classList.add("appear");
+            }, 700);
+        }
+    </script>
 {% endblock %}

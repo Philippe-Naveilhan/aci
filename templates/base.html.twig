@@ -24,7 +24,7 @@
                     logoCircle.classList.add("appear")
                     logoCircle.classList.remove("disappear")
                 }
-            } else {
+            } else if (window.scrollY < 200) {
                 imgMenu.classList.add("is-not-reduce")
                 imgMenu.classList.remove("is-reduce")
                 logoCircle.classList.add("disappear")
