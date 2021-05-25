@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <meta name="author" content="Philippe NAVEILHAN">
+        <meta name="description" content="{{ seo.sentences ?? '' }}">
+        <meta name="keywords" content="{{ seo.words ?? '' }}">
         <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}

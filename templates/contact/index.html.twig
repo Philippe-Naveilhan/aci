@@ -4,7 +4,8 @@
 
 {% block body %}
 
-<div class="contact w-100 d-flex flex-row mt-5">
+<div class="position-relative contact w-100 d-flex flex-row mt-5">
+    {% include('update.html.twig') with {'chemin': 'projects'} %}
     <div class="address col-3 offset-2">
         <p>
             Angelus Cosy IMMO<br>

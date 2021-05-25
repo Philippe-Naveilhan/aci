@@ -28,6 +28,10 @@ body {
     color: $color-dark;
     background-color: whitesmoke;
 }
+h1{
+    font-family: 'Italiana', serif;
+    font-size: 24px;
+}
 section{
     padding-bottom: 48px;
 }
@@ -35,6 +39,30 @@ section{
     position: -webkit-sticky;
     position: sticky;
     top:0;
+}
+.modification{
+    position: absolute;
+    display: flex;
+    top: 10px;
+    left: 10px;
+    background-color: $color-light;
+    border-radius: 50%;
+    border: solid 2px $color-dark;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    align-items: center;
+    div{
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        border: solid 1px $color-dark;
+        color: $color-dark;
+    }
 }
 button{
     border-radius: 16px;

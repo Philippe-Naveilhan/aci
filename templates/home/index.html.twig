@@ -10,7 +10,8 @@
             <source src="{{ asset("build/video/video.webm") }}" type="video/webm">
         </video>
     </section>
-    <section id="team" class="d-flex flex-row justify-content-center align-items-center">
+    <section id="team" class="position-relative d-flex flex-row justify-content-center align-items-center">
+        {% include('update.html.twig') with {'chemin': 'gestion'} %}
         <div class="img img-l">
             <img src="{{ asset('build/images/portraits.webp') }}" alt="Portait des collaborateurs du groupe">
         </div>
@@ -21,7 +22,8 @@
             <img src="{{ asset('build/images/interiors-coffee.webp') }}" alt="Portait des collaborateurs du groupe">
         </div>
     </section>
-    <section id="houses">
+    <section id="houses" class="position-relative">
+        {% include('update.html.twig') with {'chemin': 'projects'} %}
         <div class="card-house position-relative mx-auto">
             <div class="title position-absolute">Cocoon'Modern</div>
             <div class="infos position-absolute">

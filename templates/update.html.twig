@@ -1,0 +1,7 @@
+{% if is_granted('ROLE_ADMIN') %}
+    <div class="position-absolute modification">
+        <div>
+            <p class="m-0"><a class="my-auto" href="{{ path(chemin) }}"><i class="bi bi-gear"></i></a></p>
+        </div>
+    </div>
+{% endif %}
