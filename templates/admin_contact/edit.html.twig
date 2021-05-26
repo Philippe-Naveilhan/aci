@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Contact{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">Enregistrer les éléments de contact</h1>
+    <div class="mb-5">
+        {{ include('admin_contact/_form.html.twig', {'button_label': 'Enregistrer les changements'}) }}
+    </div>
+{% endblock %}

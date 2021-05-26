@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+<div class="text-center">
+    <div class="my-3">
+        {{ form_label(form.words, null, {'label': 'Mots clés'}) }}{{ form_errors(form.words) }}<br>
+        {{ form_widget(form.words) }}
+    </div>
+    <div class="my-3">
+        {{ form_label(form.sentences, null, {'label': 'Description'}) }}{{ form_errors(form.sentences) }}<br>
+        {{ form_widget(form.sentences) }}
+    </div>
+</div>
+<div class="text-center my-3">
+    <button class="button">{{ button_label|default('Enregistrer') }}</button>
+</div>
+{{ form_end(form) }}

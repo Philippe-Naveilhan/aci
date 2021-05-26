@@ -1,9 +1,11 @@
 <div class="sticky-one" id="navbar">
-    <div id="logo-circle" class="position-absolute disappear">
-        <a href="{{ path('home') }}">
-            <img src="{{ asset('build/images/logo_circle.png') }}" alt="Logo de l'entreprise sans le texte">
-        Angelus Cosy IMMO
-        </a>
+    <div id="logo-circle" class="position-absolute disappear row">
+                <a href="{{ path('home') }}">
+                    <h1>
+                        <img src="{{ asset('build/images/logo_circle.png') }}" alt="Logo de l'entreprise sans le texte">
+                        Angelus Cosy IMMO
+                    </h1>
+                </a>
     </div>
     <div class="my_navbar w-100 text-center">
         <a href="{{ path('home') }}">
@@ -11,8 +13,11 @@
         </a>
     </div>
     <div class="menu d-flex flew-row justify-content-center">
-            <div class="link"><a href="{{ path('home') }}"{{ app.request.pathInfo == '/' ? ' class="focus"' : '' }}>Accueil</a></div>
             <div class="link"><a href="{{ path('projects') }}"{{ app.request.pathInfo == '/projects' ? ' class="focus"' : '' }}>Nos biens</a></div>
             <div class="link"><a href="{{ path('contact') }}"{{ app.request.pathInfo == '/contact' ? ' class="focus"' : '' }}>Contact</a></div>
+            {%  if is_granted('ROLE_ADMIN') %}
+            <div class="link"><a href="{{ path('app_logout') }}"><i class="h3 bi bi-person-x"></i></a></div>
+            {% endif %}
+        {% include('update.html.twig') with {'chemin': 'seo'} %}
     </div>
 </div>

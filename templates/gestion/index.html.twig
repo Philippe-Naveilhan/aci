@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion du site Angelus Cocoon IMMO{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Gestion du site Angelus Cocoon IMMO</h1>
+    <div class="w-100 d-flex flex-wrap justify-content-around">
+        <a href="{{ path('seo') }}">
+            <div class="col-4 text-center">
+                <p>SEO</p>
+            </div>
+        </a>
+        <div class="col-4 text-center">
+            <p>Infos Entreprise</p>
+        </div>
+        <div class="col-4 text-center">
+            <p>Biens</p>
+        </div>
+        <div class="col-4 text-center">
+            <p>Contact</p>
+        </div>
+    </div>
+{% endblock %}
