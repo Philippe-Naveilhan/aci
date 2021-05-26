@@ -1,4 +1,3 @@
-
 $color-light: rgb(238, 217, 188);
 $color-dark: #876A42;
 $color3: #000;
@@ -12,7 +11,6 @@ $color3: #000;
 //font-family: 'Italiana', serif;
 //font-family: 'Montserrat', sans-serif;
 
-
 *{
     font-family: 'Montserrat', sans-serif;
 }
@@ -24,6 +22,13 @@ a:hover{
     color: currentColor;
     font-weight: 700;
 }
+
+@for $i from 1 through 6 {
+    .formHeight#{$i} {
+        height: 100px*$i;
+    }
+}
+
 body {
     color: $color-dark;
     background-color: whitesmoke;
@@ -135,7 +140,7 @@ button:hover{
         width: 100%;
     }
 }
-#team{
+#philosophy{
     padding-top:48px;
     .img{
         border: solid 1px $color-light;

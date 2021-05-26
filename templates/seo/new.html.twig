@@ -3,9 +3,8 @@
 {% block title %}New Seo{% endblock %}
 
 {% block body %}
-    <h1>Create new Seo</h1>
-
-    {{ include('seo/_form.html.twig') }}
-
-    <a href="{{ path('seo') }}">back to list</a>
+    <h1 class="text-center my-5">SEO<br/>Gestion du référencement du site</h1>
+    <div class="mb-5">
+        {{ include('seo/_form.html.twig') }}
+    </div>
 {% endblock %}

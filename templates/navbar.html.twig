@@ -15,6 +15,9 @@
     <div class="menu d-flex flew-row justify-content-center">
             <div class="link"><a href="{{ path('projects') }}"{{ app.request.pathInfo == '/projects' ? ' class="focus"' : '' }}>Nos biens</a></div>
             <div class="link"><a href="{{ path('contact') }}"{{ app.request.pathInfo == '/contact' ? ' class="focus"' : '' }}>Contact</a></div>
+            {%  if is_granted('ROLE_ADMIN') %}
+            <div class="link"><a href="{{ path('app_logout') }}"><i class="h3 bi bi-person-x"></i></a></div>
+            {% endif %}
         {% include('update.html.twig') with {'chemin': 'seo'} %}
     </div>
 </div>

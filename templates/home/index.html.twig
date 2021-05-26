@@ -10,16 +10,18 @@
             <source src="{{ asset("build/video/video.webm") }}" type="video/webm">
         </video>
     </section>
-    <section id="team" class="position-relative d-flex flex-row justify-content-center align-items-center">
-        {% include('update.html.twig') with {'chemin': 'gestion'} %}
+    <section id="philosophy" class="position-relative d-flex flex-row justify-content-center align-items-center">
+        {% include('update.html.twig') with {'chemin': 'philosophy_edit'} %}
         <div class="img img-l">
-            <img src="{{ asset('build/images/portraits.webp') }}" alt="Portait des collaborateurs du groupe">
+            {% set leftPicture = philosophy.leftPicture ?? 'portraits.webp' %}
+            <img src="{{ asset('build/images/'~leftPicture)|imagine_filter('sizeOne') }}" alt="Portait des collaborateurs du groupe">
         </div>
         <div class="line"></div>
-        <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto hic ipsum libero nam perferendis quas reprehenderit saepe totam, voluptas. Aliquam debitis dicta doloribus eveniet fuga modi similique, suscipit tenetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur autem consequuntur cumque dolor dolore doloremque eius eligendi libero maiores non nulla quidem quis sit tempora, tempore ullam ut voluptatem?</div>
+        <div class="text">{{ philosophy.text ?? 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto hic ipsum libero nam perferendis quas reprehenderit saepe totam, voluptas. Aliquam debitis dicta doloribus eveniet fuga modi similique, suscipit tenetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur autem consequuntur cumque dolor dolore doloremque eius eligendi libero maiores non nulla quidem quis sit tempora, tempore ullam ut voluptatem?' }}</div>
         <div class="line"></div>
         <div class="img img-r">
-            <img src="{{ asset('build/images/interiors-coffee.webp') }}" alt="Portait des collaborateurs du groupe">
+            {% set rightPicture = philosophy.rightPicture ?? 'interiors-coffee.webp' %}
+            <img src="{{ asset('build/images/'~rightPicture)|imagine_filter('sizeOne') }}" alt="Portait des collaborateurs du groupe">
         </div>
     </section>
     <section id="houses" class="position-relative">

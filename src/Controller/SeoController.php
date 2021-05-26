@@ -16,20 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class SeoController extends AbstractController
 {
     /**
-     * @Route("/", name="seo", methods={"GET"})
-     */
-    public function index(SeoRepository $seoRepository): Response
-    {
-        return $this->render('seo/index.html.twig', [
-            'seos' => $seoRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/new", name="seo_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
+        $verifIfSeoExist = $this->getDoctrine()->getRepository(Seo::class)->findOneBy([]);
+        if(isset($verifIfSeoExist)){
+            return $this->redirectToRoute('seo');
+        }
+
         $seo = new Seo();
         $form = $this->createForm(SeoType::class, $seo);
         $form->handleRequest($request);
@@ -39,7 +34,7 @@ class SeoController extends AbstractController
             $entityManager->persist($seo);
             $entityManager->flush();
 
-            return $this->redirectToRoute('seo');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('seo/new.html.twig', [
@@ -49,46 +44,26 @@ class SeoController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="seo_show", methods={"GET"})
+     * @Route("/edit", name="seo", methods={"GET","POST"})
      */
-    public function show(Seo $seo): Response
+    public function edit(Request $request): Response
     {
-        return $this->render('seo/show.html.twig', [
-            'seo' => $seo,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="seo_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Seo $seo): Response
-    {
+        $seo = $this->getDoctrine()->getRepository(Seo::class)->findOneBy([]);
+        if(!isset($seo)){
+            return $this->redirectToRoute('seo_new');
+        }
         $form = $this->createForm(SeoType::class, $seo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('seo');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('seo/edit.html.twig', [
             'seo' => $seo,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="seo_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Seo $seo): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$seo->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($seo);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('seo');
     }
 }

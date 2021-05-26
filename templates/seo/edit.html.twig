@@ -3,11 +3,8 @@
 {% block title %}Edit Seo{% endblock %}
 
 {% block body %}
-    <h1>Edit Seo</h1>
-
-    {{ include('seo/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('seo') }}">back to list</a>
-
-    {{ include('seo/_delete_form.html.twig') }}
+    <h1 class="text-center my-5">SEO<br/>Gestion du référencement du site</h1>
+    <div class="mb-5">
+        {{ include('seo/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    </div>
 {% endblock %}

@@ -5,20 +5,22 @@
 {% block body %}
 
 <div class="position-relative contact w-100 d-flex flex-row mt-5">
-    {% include('update.html.twig') with {'chemin': 'projects'} %}
+    {% include('update.html.twig') with {'chemin': 'admin_contact_edit'} %}
     <div class="address col-3 offset-2">
         <p>
-            Angelus Cosy IMMO<br>
-            8, place Jean JAURES<br>
-            59000 LILLES
+            {{ contact.name ?? '' }}<br>
+            {{ contact.address ?? '' }}<br>
+            {{ contact.zipcode ?? '' }} {{ contact.city ?? '' }}
         </p>
         <p>
-            07-01-23-45-67
+            {{ contact.phone ?? '' }}
         </p>
-        <p><a href="mailto:contact@ac-immo.fr">contact@ac-immo.fr</a></p>
+        <p><a href="mailto:{{ contact.mail ?? '' }}">{{ contact.mail ?? '' }}</a></p>
+        <p>Vos interlocutrices : <br/> <b>{{ contact.staff ?? '' }}</b></p>
     </div>
-    <div class="picture col-5">
-        <img src="{{ asset('build/images/archi.webp') }}" alt="Photo d'une cuisine avec en premier plan une plume, de l'encre de chine et un bloc de papier, et au fond un mur de brique. Ambiance moderne et chaleureuse.">
+    <div class="picture col-5 mb-5">
+        {% set picture = contact.picture ?? '' %}
+        <img src="{{ asset('build/images/'~picture)|imagine_filter('sizeOne') }}" alt="Photo d'une cuisine avec en premier plan une plume, de l'encre de chine et un bloc de papier, et au fond un mur de brique. Ambiance moderne et chaleureuse.">
     </div>
 </div>
 
