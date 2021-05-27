@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ContactType extends AbstractType
 {
@@ -19,7 +20,13 @@ class ContactType extends AbstractType
             ->add('phone')
             ->add('mail')
             ->add('staff')
-            ->add('picture')
+            ->add('pictureFile', VichImageType::class, [
+                'required' => false,
+                'help'=> 'le fichier ne doit pas dépasser 2Mo',
+                'allow_delete' => false,
+                'download_uri' => true,
+                'download_link' => false,
+            ])
         ;
     }
 

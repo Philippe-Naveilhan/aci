@@ -1,11 +1,8 @@
 {{ form_start(form) }}
 <div class="d-flex flex-row justify-content-around text-center">
-    <div class="my-3 col-3">
-        <div>
-            <img src="{{ asset('build/images/'~philosophy.leftPicture)|imagine_filter('width300') }}" alt="image left">
-        </div>
-        {{ form_label(form.leftPicture, null, {'label': 'Image de gauche'}) }}{{ form_errors(form.leftPicture) }}<br>
-        {{ form_widget(form.leftPicture) }}
+    <div class="vich_image my-3 col-3">
+        {{ form_label(form.leftPictureFile, null, {'label': 'Image de gauche'}) }}{{ form_errors(form.leftPictureFile) }}<br>
+        {{ form_widget(form.leftPictureFile) }}
     </div>
 
     <div class="my-3 col-5">
@@ -13,12 +10,9 @@
         {{ form_widget(form.text) }}
     </div>
 
-    <div class="my-3 col-3">
-        <div>
-            <img src="{{ asset('build/images/'~philosophy.rightPicture)|imagine_filter('width300') }}" alt="image left">
-        </div>
-        {{ form_label(form.rightPicture, null, {'label': 'Image de droite'}) }}{{ form_errors(form.rightPicture) }}<br>
-        {{ form_widget(form.rightPicture) }}
+    <div class="vich_image my-3 col-3">
+        {{ form_label(form.rightPictureFile, null, {'label': 'Image de droite'}) }}{{ form_errors(form.rightPictureFile) }}<br>
+        {{ form_widget(form.rightPictureFile) }}
     </div>
 </div>
 
