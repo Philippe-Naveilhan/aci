@@ -19,8 +19,8 @@
         <p>Vos interlocutrices : <br/> <b>{{ contact.staff ?? '' }}</b></p>
     </div>
     <div class="picture col-5 mb-5">
-        {% set picture = contact.picture ?? '' %}
-        <img src="{{ asset('build/images/'~picture)|imagine_filter('sizeOne') }}" alt="Photo d'une cuisine avec en premier plan une plume, de l'encre de chine et un bloc de papier, et au fond un mur de brique. Ambiance moderne et chaleureuse.">
+{#        {% set picture = contact.picture ?? '' %}#}
+        <img src="{{ vich_uploader_asset(contact, 'pictureFile')|imagine_filter('sizeOne') }}" alt="Photo d'une cuisine avec en premier plan une plume, de l'encre de chine et un bloc de papier, et au fond un mur de brique. Ambiance moderne et chaleureuse.">
     </div>
 </div>
 

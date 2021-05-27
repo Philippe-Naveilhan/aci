@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
+ * @Vich\Uploadable
  */
 class Contact
 {
@@ -54,11 +59,19 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $picture;
 
     /**
+     * @Vich\UploadableField(mapping="site", fileNameProperty="picture")
+     * @var File|null
+     */
+    private $pictureFile;
+
+    /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
      */
     private $updatedAt;
 
@@ -151,16 +164,38 @@ class Contact
         return $this;
     }
 
-    public function getPicture(): ?string
+    /**
+     * @param File|null $pictureFile
+     */
+    public function setPictureFile(?File $pictureFile)
     {
-        return $this->picture;
+        $this->pictureFile = $pictureFile;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($pictureFile) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    public function setPicture(?string $picture): self
+    /**
+     * @return File|null
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPicture($picture)
     {
         $this->picture = $picture;
+    }
 
-        return $this;
+    public function getPicture()
+    {
+        return $this->picture;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
