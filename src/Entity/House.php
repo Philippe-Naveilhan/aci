@@ -35,11 +35,6 @@ class House
     private $city;
 
     /**
-     * @ORM\OneToMany(targetEntity=Pictures::class, mappedBy="house")
-     */
-    private $pictures;
-
-    /**
      * @ORM\OneToMany(targetEntity=HouseCharacteristics::class, mappedBy="house", orphanRemoval=true)
      */
     private $houseCharacteristics;
@@ -87,36 +82,6 @@ class House
     public function setCity(?string $city): self
     {
         $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Pictures[]
-     */
-    public function getPictures(): Collection
-    {
-        return $this->pictures;
-    }
-
-    public function addPicture(Pictures $picture): self
-    {
-        if (!$this->pictures->contains($picture)) {
-            $this->pictures[] = $picture;
-            $picture->setHouse($this);
-        }
-
-        return $this;
-    }
-
-    public function removePicture(Pictures $picture): self
-    {
-        if ($this->pictures->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
-            if ($picture->getHouse() === $this) {
-                $picture->setHouse(null);
-            }
-        }
 
         return $this;
     }
