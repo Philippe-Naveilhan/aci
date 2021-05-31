@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New House{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">ENREGISTRER UN NOUVEAU BIEN</h1>
+    <a class="my-3" href="{{ path('house_index') }}"><button class="button">Retour à la liste</button></a>
+
+    {{ include('house/_form.html.twig') }}
+
+{% endblock %}

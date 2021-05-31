@@ -1,7 +1,7 @@
 {% if is_granted('ROLE_ADMIN') %}
-    <div class="position-absolute modification">
+    <div class="{{ (position is defined) ? 'position-relative' : 'position-absolute' }} modification">
         <div>
-            <p class="m-0"><a class="my-auto" href="{{ path(chemin) }}"><i class="bi bi-gear"></i></a></p>
+            <p class="m-0"><a class="my-auto" href="{% if id is defined %}{{ path(chemin, {'id': id }) }}{% else %}{{ path(chemin) }}{% endif %}"><i class="bi bi-gear"></i></a></p>
         </div>
     </div>
 {% endif %}

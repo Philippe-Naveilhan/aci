@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\House;
 use App\Entity\Philosophy;
 use App\Entity\Seo;
 use App\Repository\SeoRepository;
@@ -19,12 +20,13 @@ class HomeController extends AbstractController
      */
     public function index(SeoRepository $seoRepository): Response
     {
+        $houses = $this->getDoctrine()->getRepository(House::class)->findBy(['public'=>true]);
         $seo = $this->getDoctrine()->getRepository(Seo::class)->findOneBy([]);
         $philosophy = $this->getDoctrine()->getRepository(Philosophy::class)->findOneBy([]);
         return $this->render('home/index.html.twig', [
             'seo' => $seo,
             'philosophy' => $philosophy,
-            'controller_name' => 'Accueil'
+            'houses' => $houses
         ]);
     }
 }

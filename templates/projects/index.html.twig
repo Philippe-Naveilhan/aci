@@ -3,14 +3,15 @@
 {% block title %}Nos biens, bientôt les vôtres...{% endblock %}
 
 {% block body %}
-    <section id="projects" class="mt-0 pt-5">
+    <section id="projects" class="position-relative mt-0 pt-5">
+        {% include('update.html.twig') with {'chemin': 'house_edit', 'id': house.id} %}
         <h1 class="w-100 text-center mt-1 mb-5">Nos biens, bientôt les vôtres...</h1>
         <div class="bloc col-10 offset-1 mb-5">
-            <div class="title w-100 text-center">Cocoon'Lilles</div>
+            <div class="title w-100 text-center">{{ house.name }}</div>
             <div class="my-3 row col-10 offset-1 align-items-center">
                 <div class="pictures col-6 d-flex flex-column p-0">
                     <div class="d-flex flex-row">
-                        <div class="first col-8 m-0"><img class="w-100" src="{{ asset('build/images/interiors.webp')|imagine_filter('sizeOne') }}"></div>
+                        <div class="first col-8 m-0"><img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile')|imagine_filter('sizeOne') }}"></div>
                         <div class="column m-0 col-4 d-flex flex-column">
                             <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-1.webp')|imagine_filter('sizeOne') }}" alt=""></div>
                             <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-2.webp')|imagine_filter('sizeOne') }}" alt=""></div>
@@ -24,16 +25,16 @@
                     </div>
                 </div>
                 <div class="details col-5 offset-1 pt-2 pl-4">
-                    <p class="h5"><i class="h4 bi bi-geo pr-5"></i> 59200 LILLES</p>
-                    <p class="h5"><i class="h4 bi bi-tag mr-2"></i> 282.000 € HFN</p>
-                    <p class="h5"><i class="h4 bi bi-rulers mr-2"></i> 218 m2</p>
-                    <p class="h5"><i class="h4 bi bi-columns-gap mr-2"></i> 7 pièces</p>
-                    <p class="h5"><i class="h4 bi bi-wifi mr-2"></i> Fibre Optique</p>
+                    <p class="h5"><i class="h4 bi bi-geo pr-5"></i> {{ house.zipcode ~ ' ' ~ house.city }}</p>
+                    <p class="h5"><i class="h4 bi bi-tag mr-2"></i> {{ house.price }} € HFN</p>
+                    <p class="h5"><i class="h4 bi bi-rulers mr-2"></i> {{ house.surface }} m2</p>
+                    <p class="h5"><i class="h4 bi bi-columns-gap mr-2"></i> {{ house.rooms }} pièces</p>
+                    <p class="h5"><i class="h4 bi bi-wifi mr-2"></i> {{ house.connexion }}</p>
 {#                    <button class="mt-3"><i class="h3 bi bi-images"></i> Plus de photos...</button>#}
                 </div>
             </div>
             <div class="description col-10 offset-1 mb-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque consequatur ea enim in sapiente suscipit voluptas. Architecto at cum, doloremque exercitationem harum iusto minus odit, quibusdam quisquam repellat voluptatibus?
+                {{ house.description }}
             </div>
         </div>
 

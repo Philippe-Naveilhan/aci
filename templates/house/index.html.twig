@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}House index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-5">Les biens passés, présents & futurs</h1>
+
+    <div class="d-flex flex-wrap justify-content-around">
+
+        {% for house in houses %}
+
+            {% include('house/cardHouse.html.twig') with {'name':house.name,'zipcode':house.zipcode,'city':house.city,'description':house.description,'id':house.id} %}
+
+        {% endfor %}
+        <div class="col-3 d-flex align-items-center text-center">
+            <a href="{{ path('house_new') }}"><button class="button">Nouveau bien</button></a>
+        </div>
+    </div>
+
+{% endblock %}

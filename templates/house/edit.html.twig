@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit House{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">Modifier les données d'un bien</h1>
+    <a  href="{{ path('house_index') }}"><button  class="button my-3">Aller à la liste des biens</button></a>
+
+    {{ include('house/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+{% endblock %}
