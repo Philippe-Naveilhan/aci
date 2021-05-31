@@ -1,0 +1,22 @@
+<div class="col-3 border m-3">
+    <div class="row">
+        <div class="col-8 h3">
+            {{ name|length < 17 ? name : name|slice(0,17)~'...' }}
+        </div>
+        <div class="col-4 text-end">
+            {{ zipcode }}<br>{{ city }}
+        </div>
+    </div>
+    <div class="col">
+        <img class="w-100" src="{{ vich_uploader_asset(house,'firstPictureFile')|imagine_filter('sizeOne') }}"/>
+    </div>
+    <div class="col">{{ (description|length < 150) ? description : (description|slice(0,150)~'...') }}</div>
+    <div class="row py-2">
+        <div class="col-6 text-center">
+            <a href="{{ path('house_edit', {'id':id}) }}"><button class="button">Modif</button></a>
+        </div>
+        <div class="col-6 text-center">
+            {{ include('house/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>

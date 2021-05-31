@@ -3,9 +3,9 @@
 {% block title %}New House{% endblock %}
 
 {% block body %}
-    <h1>Create new House</h1>
+    <h1 class="text-center mt-5">ENREGISTRER UN NOUVEAU BIEN</h1>
+    <a class="my-3" href="{{ path('house_index') }}"><button class="button">Retour à la liste</button></a>
 
     {{ include('house/_form.html.twig') }}
 
-    <a href="{{ path('house_index') }}">back to list</a>
 {% endblock %}

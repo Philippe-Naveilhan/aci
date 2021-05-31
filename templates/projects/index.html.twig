@@ -3,7 +3,8 @@
 {% block title %}Nos biens, bientôt les vôtres...{% endblock %}
 
 {% block body %}
-    <section id="projects" class="mt-0 pt-5">
+    <section id="projects" class="position-relative mt-0 pt-5">
+        {% include('update.html.twig') with {'chemin': 'house_edit', 'id': house.id} %}
         <h1 class="w-100 text-center mt-1 mb-5">Nos biens, bientôt les vôtres...</h1>
         <div class="bloc col-10 offset-1 mb-5">
             <div class="title w-100 text-center">{{ house.name }}</div>

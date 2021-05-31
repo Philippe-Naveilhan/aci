@@ -1,4 +1,56 @@
 {{ form_start(form) }}
+
+<div class="row">
+    <div class="col-5 offset-1 d-flex flex-column">
+        <div class="my-3">
+            {{ form_label(form.name, null, {'label': 'Nom'}) }}{{ form_errors(form.name) }}<br>
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.zipcode, null, {'label': 'Code Postal'}) }} & {{ form_label(form.city, null, {'label': 'Commune'}) }}{{ form_errors(form.zipcode) }} {{ form_errors(form.city) }}<br>
+            {{ form_widget(form.zipcode) }} {{ form_widget(form.city) }}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.description, null, {'label': 'Description'})  }}{{ form_errors(form.description) }}<br>
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.public, null, {'label': 'Publier ?'}) }}{{ form_errors(form.public) }}<br>
+            {{ form_widget(form.public) }}
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="vich_image my-3">
+            {{ form_label(form.firstPictureFile, null, {'label': 'Illustration Principale'}) }}{{ form_errors(form.firstPictureFile) }}<br>
+            {{ form_widget(form.firstPictureFile) }}
+        </div>
+    </div>
+</div>
+<div class="col-10 mx-auto d-flex flex-wrap justify-content-around">
+    <div class="col-3 my-3 text-center">
+        {{ form_label(form.price, null, {'label': 'Prix'}) }}{{ form_errors(form.price) }}<br>
+        {{ form_widget(form.price) }}
+    </div>
+    <div class="col-3 my-3 text-center">
+        {{ form_label(form.locality, null, {'label': 'Localité'}) }}{{ form_errors(form.locality) }}<br>
+        {{ form_widget(form.locality) }}
+    </div>
+    <div class="col-3 my-3 text-center">
+        {{ form_label(form.rooms, null, {'label': 'Nombre de pièces'}) }}{{ form_errors(form.rooms) }}<br>
+        {{ form_widget(form.rooms) }}
+    </div>
+    <div class="col-3 my-3 text-center">
+        {{ form_label(form.surface, null, {'label': 'Surface habitable'}) }}{{ form_errors(form.surface) }}<br>
+        {{ form_widget(form.surface) }}
+    </div>
+    <div class="col-3 my-3 text-center">
+        {{ form_label(form.connexion, null, {'label': 'Type de connexion'}) }}{{ form_errors(form.connexion) }}<br>
+        {{ form_widget(form.connexion) }}
+    </div>
+</div>
+
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="text-center">
+    <button class="button my-3">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}
