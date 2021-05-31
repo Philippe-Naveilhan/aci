@@ -25,22 +25,26 @@
         </div>
     </section>
     <section id="houses" class="position-relative">
-        {% include('update.html.twig') with {'chemin': 'projects'} %}
-        <div class="card-house position-relative mx-auto">
-            <div class="title position-absolute">Cocoon'Modern</div>
-            <div class="infos position-absolute">
-                78120 YERRES<br>128m2<br>Toit terrasse
+        {% for house in houses %}
+        <div>
+            {% include('update.html.twig') with {'chemin': 'projects'} %}
+            <div class="card-house position-relative mx-auto">
+                <div class="title position-absolute">{{ house.name }}</div>
+                <div class="infos position-absolute">
+                    {{ house.zipcode ~ ' ' ~ house.city }}
+                </div>
+                <div class="image position-relative mr-auto">
+                    <img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile') }}" alt="Photo du bien : {{ house.name }}.">
+                </div>
+                <div class="description position-absolute">{{ house.description }}</div>
             </div>
-            <div class="image position-relative mr-auto">
-                <img class="w-100" src="{{ asset('build/images/interiors.webp') }}" alt="Portait des collaborateurs du groupe">
+            <div id="contact" class="text-center">
+                <a href="{{ path('projects', {'id': house.id}) }}">
+                    <button>En voir plus...</button>
+                </a>
             </div>
-            <div class="description position-absolute">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet culpa debitis fugit harum quam saepe similique. Asperiores atque doloremque eius error in quia, vitae voluptate voluptatum. Assumenda eaque quisquam suscipit?</div>
         </div>
-        <div id="contact" class="text-center">
-            <a href="{{ path('projects') }}">
-                <button>En voir plus...</button>
-            </a>
-        </div>
+        {% endfor %}
     </section>
 </div>
 {% endblock %}

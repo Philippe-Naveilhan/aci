@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\House;
 use App\Repository\SeoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectsController extends AbstractController
 {
     /**
-     * @Route("/projects", name="projects")
+     * @Route("/{id}/projects", name="projects")
      */
-    public function index(SeoRepository $seoRepository): Response
+    public function index(House $house, SeoRepository $seoRepository): Response
     {
         $array = [
             ['Titre 1','interiors-1.webp', "Salon chic et sobre, il accompagnera vos soirées entre amis autant que vos moments familiaux privilégiés..."],
@@ -24,6 +25,7 @@ class ProjectsController extends AbstractController
 
         $seo = $seoRepository->findOneBy([]);
         return $this->render('projects/index.html.twig', [
+            'house' => $house,
             'seo' => $seo,
             'array' => $array,
         ]);
