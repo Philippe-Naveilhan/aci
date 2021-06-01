@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\House;
+use App\Entity\Pictures;
 use App\Form\HouseType;
 use App\Repository\HouseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,6 +36,17 @@ class HouseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('picturesFiles')->getData();
+            foreach($images as $image) {
+                $file = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                  $this->getParameter('house_images'),
+                  $file
+                );
+                $picture = new Pictures();
+                $picture->setPicture($file);
+                $house->addPicture($picture);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($house);
             $entityManager->flush();
@@ -67,6 +79,19 @@ class HouseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $images = $form->get('picturesFiles')->getData();
+            foreach($images as $image) {
+                $file = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                    $this->getParameter('house_images'),
+                    $file
+                );
+                $picture = new Pictures();
+                $picture->setPicture($file);
+                $house->addPicture($picture);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('house_index');
@@ -84,6 +109,9 @@ class HouseController extends AbstractController
     public function delete(Request $request, House $house): Response
     {
         if ($this->isCsrfTokenValid('delete'.$house->getId(), $request->request->get('_token'))) {
+            foreach ($house->getPictures() as $picture){
+
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($house);
             $entityManager->flush();

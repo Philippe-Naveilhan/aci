@@ -8,4 +8,13 @@
 
     {{ include('house/_form.html.twig', {'button_label': 'Modifier'}) }}
 
+    <div class="d-flex flex-wrap justify-content-around">
+        {% for picture in house.pictures %}
+            <div class="col-2 text-center">
+                <img class="w-100" src="{{ asset('uploads/house/'~picture.picture) }}" alt="images secondaire"/>
+                <a href="{{ path('pictures_edit', {'id':picture.id}) }}"><button class="button m-1">Modifier</button> </a>
+                {{ include('pictures/_delete_form.html.twig') }}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

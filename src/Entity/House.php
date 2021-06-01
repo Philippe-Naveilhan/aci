@@ -92,7 +92,7 @@ class House
     private $connexion;
 
     /**
-     * @ORM\OneToMany(targetEntity=Pictures::class, mappedBy="house")
+     * @ORM\OneToMany(targetEntity=Pictures::class, mappedBy="house", cascade={"persist"})
      */
     private $pictures;
 

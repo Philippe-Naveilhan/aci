@@ -48,7 +48,11 @@
         {{ form_widget(form.connexion) }}
     </div>
 </div>
-
+<div>
+    <h3>Ajout d'images secondaires</h3>
+    {{ form_label(form.picturesFiles) }}{{ form_errors(form.picturesFiles) }}<br>
+    {{ form_widget(form.picturesFiles) }}
+</div>
     {{ form_widget(form) }}
 <div class="text-center">
     <button class="button my-3">{{ button_label|default('Enregistrer') }}</button>

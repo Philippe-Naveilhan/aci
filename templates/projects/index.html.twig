@@ -50,11 +50,11 @@
 
 {#            picture and description #}
             <div id="picture" class="image col-8 p-3 overflow-hidden">
-                <img src="{{ asset('build/images/interiors.webp')|imagine_filter('sizeOne') }}" alt="" class="w-100">
+                <img src="{{ asset('uploads/house/'~house.pictures[0].picture)|imagine_filter('sizeOne') }}" alt="" class="w-100">
             </div>
             <div class="text col-4">
-                <p id="card_title" class="">Première chambre</p>
-                <p id="card_description">Cette chambre de 24m2 ravira vos réveils avec sa vue sur le parc.<br> Orientée sud, elle se laisse inondée de lumière toute la journée.</p>
+                <p id="card_title" class="">Titre</p>
+                <p id="card_description">{{ house.pictures[0].description }}</p>
             </div>
 {#            end picture and description #}
 
@@ -71,14 +71,14 @@
         </div>
     </section>
     <div class="visually-hidden">
-        {% for image in array %}
-            <img src="build/public/images/{{ image[1] }}" alt="{{ image[2] }}">
+        {% for picture in house.pictures %}
+            <img src="build/public/images/{{ picture.picture }}">
         {% endfor %}
     </div>
 {% endblock %}
 {% block javascripts %}
     <script>
-        let array = [{% for picture in array %}["{{ picture[0]|raw }}","{{ picture[1]|raw }}","{{ picture[2]|raw }}"],{% endfor %}];
+        let array = [{% for picture in house.pictures %}["Titre","{{ picture.picture|raw }}","{{ picture.description|raw }}"],{% endfor %}];
         let i = 0;
         document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
         function changeCard(direction){
@@ -105,7 +105,7 @@
                 document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
                 document.getElementById("card_title").innerHTML = array[i][0];
                 document.getElementById("card_description").innerHTML = array[i][2];
-                document.getElementById("picture").innerHTML = "<img src='build/images/" + array[i][1] + "' alt='' class='w-100'>";
+                document.getElementById("picture").innerHTML = "<img src='../uploads/house/" + array[i][1] + "' alt='' class='w-100'>";
                 document.getElementById("card_title").classList.remove("disappear");
                 document.getElementById("card_title").classList.add("appear");
                 document.getElementById("card_description").classList.remove("disappear");

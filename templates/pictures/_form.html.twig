@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+<div class="col-6 mx-auto row">
+    <div class="col-6">
+        <img class="w-100" src="{{ asset('uploads/house/'~picture.picture) }}" alt="image à modifier">
+    </div>
+    <div class="col-6">
+        {{ form_widget(form) }}
+    </div>
+</div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

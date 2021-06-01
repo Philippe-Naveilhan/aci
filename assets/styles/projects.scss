@@ -67,9 +67,10 @@
     }
   }
   #picture{
+    overflow: hidden;
+    height: 350px;
     img{
-      max-height: 350px;
-      max-width: 100%;
+      width: 100%;
     }
   }
 }
