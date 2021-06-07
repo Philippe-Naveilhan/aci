@@ -13,7 +13,9 @@ class PicturesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                'attr'=>['class'=>'formHeight2 col-12']
+            ])
         ;
     }
 

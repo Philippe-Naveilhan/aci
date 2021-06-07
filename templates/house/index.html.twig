@@ -12,7 +12,7 @@
             {% include('house/cardHouse.html.twig') with {'name':house.name,'zipcode':house.zipcode,'city':house.city,'description':house.description,'id':house.id} %}
 
         {% endfor %}
-        <div class="col-3 d-flex align-items-center text-center">
+        <div class="my-5 col-3 d-flex align-items-center justify-content-center">
             <a href="{{ path('house_new') }}"><button class="button">Nouveau bien</button></a>
         </div>
     </div>

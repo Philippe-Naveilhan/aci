@@ -14,15 +14,15 @@
             {{ form_label(form.description, null, {'label': 'Description'})  }}{{ form_errors(form.description) }}<br>
             {{ form_widget(form.description) }}
         </div>
-        <div class="my-3">
-            {{ form_label(form.public, null, {'label': 'Publier ?'}) }}{{ form_errors(form.public) }}<br>
-            {{ form_widget(form.public) }}
-        </div>
     </div>
     <div class="col-5">
         <div class="vich_image my-3">
             {{ form_label(form.firstPictureFile, null, {'label': 'Illustration Principale'}) }}{{ form_errors(form.firstPictureFile) }}<br>
             {{ form_widget(form.firstPictureFile) }}
+        </div>
+        <div class="my-3">
+            {{ form_label(form.public, null, {'label': 'Rendre visible aux visiteurs ?'}) }}{{ form_errors(form.public) }}
+            {{ form_widget(form.public) }}
         </div>
     </div>
 </div>
@@ -32,7 +32,7 @@
         {{ form_widget(form.price) }}
     </div>
     <div class="col-3 my-3 text-center">
-        {{ form_label(form.locality, null, {'label': 'Localité'}) }}{{ form_errors(form.locality) }}<br>
+        {{ form_label(form.locality, null, {'label': 'Caractéristiques géographiques'}) }}{{ form_errors(form.locality) }}<br>
         {{ form_widget(form.locality) }}
     </div>
     <div class="col-3 my-3 text-center">
@@ -48,8 +48,8 @@
         {{ form_widget(form.connexion) }}
     </div>
 </div>
-<div>
-    <h3>Ajout d'images secondaires</h3>
+<div class="text-center">
+    <h4 class="mt-4 text-center">Ajout d'images secondaires</h4>
     {{ form_label(form.picturesFiles) }}{{ form_errors(form.picturesFiles) }}<br>
     {{ form_widget(form.picturesFiles) }}
 </div>

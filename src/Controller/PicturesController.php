@@ -69,7 +69,7 @@ class PicturesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('pictures_index');
+            return $this->redirectToRoute('house_edit', ['id'=>$picture->getHouse()->getId()]);
         }
 
         return $this->render('pictures/edit.html.twig', [

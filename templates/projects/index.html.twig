@@ -11,18 +11,22 @@
             <div class="my-3 row col-10 offset-1 align-items-center">
                 <div class="pictures col-6 d-flex flex-column p-0">
                     <div class="d-flex flex-row">
-                        <div class="first col-8 m-0"><img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile')|imagine_filter('sizeOne') }}"></div>
+                        <div class="first {{ house.pictures|length > 1 ? 'col-8' : 'col-12' }} m-0"><img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile')|imagine_filter('sizeOne') }}"></div>
+                        {% if house.pictures|length > 1 %}
                         <div class="column m-0 col-4 d-flex flex-column">
-                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-1.webp')|imagine_filter('sizeOne') }}" alt=""></div>
-                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-2.webp')|imagine_filter('sizeOne') }}" alt=""></div>
+                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('uploads/house/'~house.pictures[0].picture)|imagine_filter('sizeOne') }}" alt=""></div>
+                            <div class="col-12 m-0 p-0"><img class="w-100" src="{{ asset('uploads/house/'~house.pictures[1].picture)|imagine_filter('sizeOne') }}" alt=""></div>
                         </div>
+                        {% endif %}
                     </div>
+                    {% if house.pictures|length > 5 %}
                     <div class="line d-flex flex-row">
-                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-3.webp')|imagine_filter('sizeOne') }}"></div>
-                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-4.webp')|imagine_filter('sizeOne') }}"></div>
-                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors-5.webp')|imagine_filter('sizeOne') }}"></div>
-                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('build/images/interiors.webp')|imagine_filter('sizeOne') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('uploads/house/'~house.pictures[2].picture)|imagine_filter('sizeOne') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('uploads/house/'~house.pictures[3].picture)|imagine_filter('sizeOne') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('uploads/house/'~house.pictures[4].picture)|imagine_filter('sizeOne') }}"></div>
+                        <div class="col-3 m-0 p-0"><img class="w-100" src="{{ asset('uploads/house/'~house.pictures[5].picture)|imagine_filter('sizeOne') }}"></div>
                     </div>
+                    {% endif %}
                 </div>
                 <div class="details col-5 offset-1 pt-2 pl-4">
                     <p class="h5"><i class="h4 bi bi-geo pr-5"></i> {{ house.zipcode ~ ' ' ~ house.city }}</p>
@@ -38,6 +42,7 @@
             </div>
         </div>
 
+        {% if house.pictures[0] is defined %}
         <div id="carousel" class="mx-auto d-flex flex-wrap align-items-center position-relative">
 
 {#            left arrow #}
@@ -69,6 +74,8 @@
             <div id="count" class="w-100 text-center">
             </div>
         </div>
+
+        {% endif %}
     </section>
     <div class="visually-hidden">
         {% for picture in house.pictures %}

@@ -4,14 +4,14 @@
 
 {% block body %}
     <h1 class="text-center mt-5">Modifier les données d'un bien</h1>
-    <a  href="{{ path('house_index') }}"><button  class="button my-3">Aller à la liste des biens</button></a>
+    <a  href="{{ path('house_index') }}"><button  class="button m-3">Aller à la liste des biens</button></a>
 
     {{ include('house/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <div class="d-flex flex-wrap justify-content-around">
+    <div class="backg-light my-5 w-75 mx-auto d-flex flex-wrap justify-content-around border border-top">
         {% for picture in house.pictures %}
-            <div class="col-2 text-center">
-                <img class="w-100" src="{{ asset('uploads/house/'~picture.picture) }}" alt="images secondaire"/>
+            <div class="col-2 text-center m-3">
+                <img class="w-100 mb-2" src="{{ asset('uploads/house/'~picture.picture)|imagine_filter('width300') }}" alt="images secondaire"/>
                 <a href="{{ path('pictures_edit', {'id':picture.id}) }}"><button class="button m-1">Modifier</button> </a>
                 {{ include('pictures/_delete_form.html.twig') }}
             </div>

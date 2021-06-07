@@ -69,8 +69,9 @@
   #picture{
     overflow: hidden;
     height: 350px;
+    
     img{
-      width: 100%;
+      max-width: 100%;
     }
   }
 }

@@ -2,7 +2,11 @@
 liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
+    resolvers:
+        default:
+            web_path: ~
     filter_sets: # Contient la liste des filtres
+        cache: ~
         sizeOne: # Nom du filtre
             quality: 95 # Qualité de l'image
             filters: # Liste des filtres à appliquer
