@@ -26,7 +26,7 @@
     </section>
     <section id="houses" class="position-relative">
         {% for house in houses %}
-        <div>
+        <div class="bloc-card position-relative">
             {% include('update.html.twig') with {'chemin': 'house_edit', 'id': house.id} %}
             <div class="card-house position-relative mx-auto">
                 <div class="title position-absolute">{{ house.name }}</div>
@@ -34,9 +34,11 @@
                     {{ house.zipcode ~ ' ' ~ house.city }}
                 </div>
                 <div class="image position-relative mr-auto">
-                    <img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile') }}" alt="Photo du bien : {{ house.name }}.">
+                    <a href="{{ path('projects', {'id': house.id}) }}">
+                        <img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile') }}" alt="Photo du bien : {{ house.name }}.">
+                    </a>
                 </div>
-                <div class="description position-absolute">{{ house.description }}</div>
+                <div class="description position-absolute">{{ house.description|length <250 ? house.description : house.description|slice(0,250)~'...' }}</div>
             </div>
             <div id="contact" class="text-center">
                 <a href="{{ path('projects', {'id': house.id}) }}">

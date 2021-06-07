@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification des descriptions secondaires{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-5 ">Modifier la description de cette image</h1>
+    <a href="{{ path('house_edit', {'id':picture.house.id}) }}"><button class="button m-3">Retour</button></a>
+
+    {{ include('pictures/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+
+{% endblock %}

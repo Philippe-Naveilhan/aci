@@ -1,23 +1,28 @@
-<div class="sticky-one" id="navbar">
+<div class="sticky-one row" id="navbar">
     <div id="logo-circle" class="position-absolute disappear row">
-                <a href="{{ path('home') }}">
-                    <h1>
-                        <img src="{{ asset('build/images/logo_circle.png') }}" alt="Logo de l'entreprise sans le texte">
-                        Angelus Cosy IMMO
-                    </h1>
-                </a>
-    </div>
-    <div class="my_navbar w-100 text-center">
         <a href="{{ path('home') }}">
-            <img id="logo_menu" class='img is-not-reduce' src="{{ asset('build/images/logo.png') }}" alt="logo de la société Angelus Cosy Immo">
+            <h1>
+                <img src="{{ asset('build/images/logo_circle.png') }}" alt="Logo de l'entreprise sans le texte">
+                Angelus Cosy IMMO
+            </h1>
         </a>
     </div>
-    <div class="menu d-flex flew-row justify-content-center">
+    <div class="col-8 offset-2">
+        <div class="my_navbar w-100 text-center">
+            <a href="{{ path('home') }}">
+                <img id="logo_menu" class='img is-not-reduce' src="{{ asset('build/images/logo.png') }}" alt="logo de la société Angelus Cosy Immo">
+            </a>
+        </div>
+        <div class="menu d-flex flew-row justify-content-center">
             <div class="link"><a href="{{ path('projects', {'id':1} ) }}"{{ app.request.pathInfo == '/projects' ? ' class="focus"' : '' }}>Nos biens</a></div>
             <div class="link"><a href="{{ path('contact') }}"{{ app.request.pathInfo == '/contact' ? ' class="focus"' : '' }}>Contact</a></div>
-            {%  if is_granted('ROLE_ADMIN') %}
-            <div class="link"><a href="{{ path('app_logout') }}"><i class="h3 bi bi-person-x"></i></a></div>
-            {% endif %}
-        {% include('update.html.twig') with {'chemin': 'seo'} %}
+        </div>
     </div>
+    <div class="col-2 position-relative d-flex justify-content-end">
+        {% include('update.html.twig') with {'chemin': 'seo', 'position': 'relative'} %}
+        {%  if is_granted('ROLE_ADMIN') %}
+            <div class="admin link"><a href="{{ path('app_logout') }}"><i class="bi bi-person-x"></i></a></div>
+        {% endif %}
+    </div>
+
 </div>
