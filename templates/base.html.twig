@@ -2,6 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <meta  name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Philippe NAVEILHAN">
         <meta name="description" content="{{ seo.sentences ?? '' }}">
         <meta name="keywords" content="{{ seo.words ?? '' }}">
@@ -17,17 +18,24 @@
         {% include 'footer.html.twig' %}
     </body>
     <script>
+        var ddd = 0;
         var imgMenu = document.getElementById("logo_menu")
         var logoCircle = document.getElementById("logo-circle")
+        window.addEventListener("scroll", function(a){
+            if(ddd===0){
+                alert(window.innerWidth);
+                ddd++;
+            }
+        })
         window.addEventListener('scroll', function(e) {
-            if (window.scrollY > 200) {
+            if (window.scrollY > 200 && window.innerWidth > 700) {
                 if (!imgMenu.className.includes('is-reduce')) {
                     imgMenu.classList.add("is-reduce")
                     imgMenu.classList.remove("is-not-reduce")
                     logoCircle.classList.add("appear")
                     logoCircle.classList.remove("disappear")
                 }
-            } else if (window.scrollY < 80) {
+            } else if (window.scrollY < 80 && window.innerWidth > 700) {
                 imgMenu.classList.add("is-not-reduce")
                 imgMenu.classList.remove("is-reduce")
                 logoCircle.classList.add("disappear")

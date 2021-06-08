@@ -4,9 +4,9 @@
 
 {% block body %}
 
-<div class="position-relative contact w-100 d-flex flex-row mt-5">
+<div class="position-relative contact w-100 d-flex flex-column-reverse flex-md-row mt-5">
     {% include('update.html.twig') with {'chemin': 'admin_contact_edit'} %}
-    <div class="address col-3 offset-2">
+    <div class="address col-10 mt-1 mt-md-0 col-md-3 offset-md-2">
         <p>
             {{ contact.name ?? '' }}<br>
             {{ contact.address ?? '' }}<br>
@@ -18,7 +18,7 @@
         <p><a href="mailto:{{ contact.mail ?? '' }}">{{ contact.mail ?? '' }}</a></p>
         <p>Vos interlocutrices : <br/> <b>{{ contact.staff ?? '' }}</b></p>
     </div>
-    <div class="picture col-5 mb-5">
+    <div class="picture col-md-5 mb-md-3">
 {#        {% set picture = contact.picture ?? '' %}#}
         <img src="{{ vich_uploader_asset(contact, 'pictureFile')|imagine_filter('sizeOne') }}" alt="Photo d'une cuisine avec en premier plan une plume, de l'encre de chine et un bloc de papier, et au fond un mur de brique. Ambiance moderne et chaleureuse.">
     </div>

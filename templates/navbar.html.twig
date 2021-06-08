@@ -7,7 +7,7 @@
             </h1>
         </a>
     </div>
-    <div class="col-8 offset-2">
+    <div class="col-md-8 offset-md-2">
         <div class="my_navbar w-100 text-center">
             <a href="{{ path('home') }}">
                 <img id="logo_menu" class='img is-not-reduce' src="{{ asset('build/images/logo.png') }}" alt="logo de la société Angelus Cosy Immo">
@@ -18,11 +18,10 @@
             <div class="link"><a href="{{ path('contact') }}"{{ app.request.pathInfo == '/contact' ? ' class="focus"' : '' }}>Contact</a></div>
         </div>
     </div>
-    <div class="col-2 position-relative d-flex justify-content-end">
+    <div class="col-md-2 position-relative d-flex justify-content-end">
         {% include('update.html.twig') with {'chemin': 'seo', 'position': 'relative'} %}
         {%  if is_granted('ROLE_ADMIN') %}
             <div class="admin link"><a href="{{ path('app_logout') }}"><i class="bi bi-person-x"></i></a></div>
         {% endif %}
     </div>
-
 </div>

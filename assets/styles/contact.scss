@@ -6,11 +6,19 @@
     border-left: solid 1px $color-dark;
   }
   .picture{
-    height: 450px;
+    max-height: 450px;
     overflow: hidden;
     img{
       width: 100%;
     }
   }
 }
-
+@media screen and (max-width: 768px) {
+  .address{
+    font-size: 14px;
+    position:absolute;
+    top: 16px;
+    left: 16px;
+    background-color: rgba(245, 245, 245, 0.7);
+  }
+}

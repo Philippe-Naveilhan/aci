@@ -6,21 +6,19 @@
 <div class="w-100">
     <section id="video-fond">
         <video playsinline="" autoplay="" muted="" loop="" poster={{ asset("build/images/video.png") }}>
-            <source src="{{ asset("build/video/video.mp4") }}" type="video/mp4">
-            <source src="{{ asset("build/video/video.webm") }}" type="video/webm">
+            <source src="{{ asset("build/video/aci.webm") }}" type="video/webm">
+{#            <source src="{{ asset("build/video/video.mp4") }}" type="video/mp4">#}
         </video>
     </section>
-    <section id="philosophy" class="position-relative d-flex flex-row justify-content-center align-items-center">
+    <section id="philosophy" class="position-relative d-flex flex-md-row flex-column justify-content-center align-items-center">
         {% include('update.html.twig') with {'chemin': 'philosophy_edit'} %}
         <div class="img img-l">
-            {% set leftPicture = philosophy.leftPicture ?? 'portraits.webp' %}
             <img src="{{ vich_uploader_asset(philosophy, 'leftPictureFile')|imagine_filter('sizeOne') }}" alt="Portait des collaborateurs du groupe">
         </div>
         <div class="line"></div>
         <div class="text">{{ philosophy.text ?? 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto hic ipsum libero nam perferendis quas reprehenderit saepe totam, voluptas. Aliquam debitis dicta doloribus eveniet fuga modi similique, suscipit tenetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur autem consequuntur cumque dolor dolore doloremque eius eligendi libero maiores non nulla quidem quis sit tempora, tempore ullam ut voluptatem?' }}</div>
         <div class="line"></div>
         <div class="img img-r">
-            {% set rightPicture = philosophy.rightPicture ?? 'interiors-coffee.webp' %}
             <img src="{{ vich_uploader_asset(philosophy, 'rightPictureFile')|imagine_filter('sizeOne') }}" alt="Portait des collaborateurs du groupe">
         </div>
     </section>
@@ -38,11 +36,11 @@
                         <img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile') }}" alt="Photo du bien : {{ house.name }}.">
                     </a>
                 </div>
-                <div class="description position-absolute">{{ house.description|length <250 ? house.description : house.description|slice(0,250)~'...' }}</div>
+                <div class="description">{{ house.description|length <250 ? house.description : house.description|slice(0,250)~'...' }}</div>
             </div>
             <div id="contact" class="text-center">
                 <a href="{{ path('projects', {'id': house.id}) }}">
-                    <button>En voir plus...</button>
+                    <button class="mb-3">En voir plus...</button>
                 </a>
             </div>
         </div>
