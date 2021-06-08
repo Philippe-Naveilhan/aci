@@ -23,7 +23,7 @@
     padding: 24px;
   }
   #carousel{
-    height: 460px;
+    min-height: 460px;
     width: 900px;
     border: solid 4px $color-dark;
     border-radius: 2px;
@@ -69,9 +69,30 @@
   #picture{
     overflow: hidden;
     height: 350px;
-    
     img{
       max-width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  #projects{
+    #carousel{
+      min-height: 460px;
+      width: 100%;
+      padding: 8px;
+      .arrow{
+        background: none;
+        opacity: 0.7;
+      }
+      .arrow:hover{
+        background: none;
+      }
+      .arrow-l{
+        left: 8px;
+      }
+      .arrow-r{
+        left: calc(100% - 56px);
+      }
     }
   }
 }
