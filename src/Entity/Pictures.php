@@ -32,6 +32,16 @@ class Pictures
      */
     private $house;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Title;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $more;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Pictures
     public function setHouse(?House $house): self
     {
         $this->house = $house;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->Title;
+    }
+
+    public function setTitle(?string $Title): self
+    {
+        $this->Title = $Title;
+
+        return $this;
+    }
+
+    public function getMore(): ?string
+    {
+        return $this->more;
+    }
+
+    public function setMore(?string $more): self
+    {
+        $this->more = $more;
 
         return $this;
     }

@@ -34,7 +34,6 @@
                     <p class="h5"><i class="h4 bi bi-rulers mr-2"></i> {{ house.surface }} m2</p>
                     <p class="h5"><i class="h4 bi bi-columns-gap mr-2"></i> {{ house.rooms }} pièces</p>
                     <p class="h5"><i class="h4 bi bi-wifi mr-2"></i> {{ house.connexion }}</p>
-{#                    <button class="mt-3"><i class="h3 bi bi-images"></i> Plus de photos...</button>#}
                 </div>
             </div>
             <div class="description col-10 offset-1 mb-3">
@@ -54,12 +53,13 @@
 {#            end left arrow #}
 
 {#            picture and description #}
-            <div id="picture" class="image col-8 p-3 overflow-hidden">
-                <img src="{{ asset('uploads/house/'~house.pictures[0].picture)|imagine_filter('sizeOne') }}" alt="" class="w-100">
+            <div id="card_picture" class="move image col-8 p-3 overflow-hidden">
+                <img src="{{ asset('uploads/house/'~house.pictures[0].picture)|imagine_filter('width300') }}" alt="" class="w-100">
             </div>
-            <div class="text col-4">
-                <p id="card_title" class="">Titre</p>
-                <p id="card_description">{{ house.pictures[0].description }}</p>
+            <div class="text col-4 h-100 pt-4">
+                <p id="card_title" class="move text-center italiana h3">{{ house.pictures[0].title ?? '' }}</p>
+                <p id="card_more" class="move text-center h5">{{ house.pictures[0].more ?? '' }}</p>
+                <p id="card_description" class="move">{{ house.pictures[0].description ?? '' }}</p>
             </div>
 {#            end picture and description #}
 
@@ -79,18 +79,23 @@
     </section>
     <div class="visually-hidden">
         {% for picture in house.pictures %}
-            <img src="build/public/images/{{ picture.picture }}">
+            <img src="/uploads/house/{{ picture.picture }}">
         {% endfor %}
     </div>
 {% endblock %}
 {% block javascripts %}
     <script>
-        let array = [{% for picture in house.pictures %}["Titre","{{ picture.picture|raw }}","{{ picture.description|raw }}"],{% endfor %}];
+        let carousel = document.getElementsByClassName('move');
+        console.log(carousel);
+        let pictures = new Array();
+        {% for picture in house.pictures %}
+        pictures.push(["{{ picture.title|raw }}","{{ picture.more|raw }}","{{ picture.description }}","{{ asset('uploads/house/'~picture.picture)|imagine_filter('sizeOne') }}"]);
+        {% endfor %}
         let i = 0;
-        document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
+        document.getElementById("count").innerHTML = (i+1) + '/' + pictures.length;
         function changeCard(direction){
             if(direction=='right'){
-                if(i!==array.length-1){
+                if(i!==pictures.length-1){
                     i++;
                 } else {
                     i=0;
@@ -99,26 +104,39 @@
                 if(i!==0){
                     i--;
                 } else {
-                    i = array.length-1;
+                    i = pictures.length-1;
                 }
             }
+            // for(i=0; i<carousel.length; i++){
+            //     carousel[i].classList.remove("appear");
+            //     carousel[i].classList.add("disappear");
+            // }
             document.getElementById("card_title").classList.remove("appear");
             document.getElementById("card_title").classList.add("disappear");
+            document.getElementById("card_more").classList.remove("appear");
+            document.getElementById("card_more").classList.add("disappear");
             document.getElementById("card_description").classList.remove("appear");
             document.getElementById("card_description").classList.add("disappear");
-            document.getElementById("picture").classList.remove("appear");
-            document.getElementById("picture").classList.add("disappear");
+            document.getElementById("card_picture").classList.remove("appear");
+            document.getElementById("card_picture").classList.add("disappear");
             setTimeout(function e(){
-                document.getElementById("count").innerHTML = (i+1) + '/' + array.length;
-                document.getElementById("card_title").innerHTML = array[i][0];
-                document.getElementById("card_description").innerHTML = array[i][2];
-                document.getElementById("picture").innerHTML = "<img src='../uploads/house/" + array[i][1] + "' alt='' class='w-100'>";
+                document.getElementById("count").innerHTML = (i+1) + '/' + pictures.length;
+                document.getElementById("card_title").innerHTML = '<b>'+pictures[i][0]+'</b>';
+                document.getElementById("card_more").innerHTML = '<b>'+pictures[i][1]+'</b>';
+                document.getElementById("card_description").innerHTML = pictures[i][2];
+                document.getElementById("card_picture").innerHTML = "<img src='" + pictures[i][3] + "' alt='" + pictures[i][0] + "' class='w-100'>";
+                // for(i=0; i<carousel.length; i++){
+                //     carousel[i].classList.remove("disappear");
+                //     carousel[i].classList.add("appear");
+                // }
                 document.getElementById("card_title").classList.remove("disappear");
                 document.getElementById("card_title").classList.add("appear");
                 document.getElementById("card_description").classList.remove("disappear");
                 document.getElementById("card_description").classList.add("appear");
-                document.getElementById("picture").classList.remove("disappear");
-                document.getElementById("picture").classList.add("appear");
+                document.getElementById("card_picture").classList.remove("disappear");
+                document.getElementById("card_picture").classList.add("appear");
+                document.getElementById("card_more").classList.remove("disappear");
+                document.getElementById("card_more").classList.add("appear");
             }, 700);
         }
     </script>
