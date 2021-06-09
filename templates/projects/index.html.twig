@@ -6,10 +6,10 @@
     <section id="projects" class="position-relative mt-0 pt-5">
         {% include('update.html.twig') with {'chemin': 'house_edit', 'id': house.id} %}
         <h1 class="w-100 text-center mt-1 mb-5">Nos biens, bientôt les vôtres...</h1>
-        <div class="bloc col-10 offset-1 mb-5">
+        <div class="bloc col-md-10 offset-md-1 mb-5">
             <div class="title w-100 text-center">{{ house.name }}</div>
             <div class="my-3 row col-10 offset-1 align-items-center">
-                <div class="pictures col-6 d-flex flex-column p-0">
+                <div class="pictures col-md-6 d-flex flex-column p-0">
                     <div class="d-flex flex-row">
                         <div class="first {{ house.pictures|length > 1 ? 'col-8' : 'col-12' }} m-0"><img class="w-100" src="{{ vich_uploader_asset(house, 'firstPictureFile')|imagine_filter('sizeOne') }}"></div>
                         {% if house.pictures|length > 1 %}
@@ -28,7 +28,7 @@
                     </div>
                     {% endif %}
                 </div>
-                <div class="details col-5 offset-1 pt-2 pl-4">
+                <div class="details col-md-5 offset-md-1 pt-2 pl-4">
                     <p class="h5"><i class="h4 bi bi-geo pr-5"></i> {{ house.zipcode ~ ' ' ~ house.city }}</p>
                     <p class="h5"><i class="h4 bi bi-tag mr-2"></i> {{ house.price }} € HFN</p>
                     <p class="h5"><i class="h4 bi bi-rulers mr-2"></i> {{ house.surface }} m2</p>
@@ -42,7 +42,18 @@
         </div>
 
         {% if house.pictures[0] is defined %}
-        <div id="carousel" class="mx-auto d-flex flex-wrap align-items-center position-relative">
+        <div id="carousel" class="mx-md-auto d-flex flex-wrap align-items-center position-relative">
+
+{#            picture and description #}
+            <div id="card_picture" class="move image col-md-8 p-3 overflow-hidden">
+                <img src="{{ asset('uploads/house/'~house.pictures[0].picture)|imagine_filter('width300') }}" alt="" class="w-100">
+            </div>
+            <div class="text col-md-4 pt-4">
+                <p id="card_title" class="move text-center italiana h3">{{ house.pictures[0].title ?? '' }}</p>
+                <p id="card_more" class="move text-center h5">{{ house.pictures[0].more ?? '' }}</p>
+                <p id="card_description" class="move">{{ house.pictures[0].description ?? '' }}</p>
+            </div>
+{#            end picture and description #}
 
 {#            left arrow #}
             <div onclick="changeCard('left')" class="arrow arrow-l position-absolute d-flex align-items-center justify-content-center">
@@ -52,17 +63,6 @@
             </div>
 {#            end left arrow #}
 
-{#            picture and description #}
-            <div id="card_picture" class="move image col-8 p-3 overflow-hidden">
-                <img src="{{ asset('uploads/house/'~house.pictures[0].picture)|imagine_filter('width300') }}" alt="" class="w-100">
-            </div>
-            <div class="text col-4 h-100 pt-4">
-                <p id="card_title" class="move text-center italiana h3">{{ house.pictures[0].title ?? '' }}</p>
-                <p id="card_more" class="move text-center h5">{{ house.pictures[0].more ?? '' }}</p>
-                <p id="card_description" class="move">{{ house.pictures[0].description ?? '' }}</p>
-            </div>
-{#            end picture and description #}
-
 {#            right arrow #}
             <div onclick="changeCard('right')" class="arrow arrow-r position-absolute d-flex align-items-center justify-content-center">
                 <div class="interior d-flex align-items-center justify-content-center">
@@ -71,22 +71,19 @@
             </div>
 {#            end right arrow #}
 
+{#            start compteur d'images #}
             <div id="count" class="w-100 text-center">
             </div>
+{#            end compteur d'images #}
         </div>
 
         {% endif %}
     </section>
-    <div class="visually-hidden">
-        {% for picture in house.pictures %}
-            <img src="/uploads/house/{{ picture.picture }}">
-        {% endfor %}
-    </div>
+
 {% endblock %}
 {% block javascripts %}
     <script>
         let carousel = document.getElementsByClassName('move');
-        console.log(carousel);
         let pictures = new Array();
         {% for picture in house.pictures %}
         pictures.push(["{{ picture.title|raw }}","{{ picture.more|raw }}","{{ picture.description }}","{{ asset('uploads/house/'~picture.picture)|imagine_filter('sizeOne') }}"]);
@@ -107,37 +104,28 @@
                     i = pictures.length-1;
                 }
             }
-            // for(i=0; i<carousel.length; i++){
-            //     carousel[i].classList.remove("appear");
-            //     carousel[i].classList.add("disappear");
-            // }
-            document.getElementById("card_title").classList.remove("appear");
-            document.getElementById("card_title").classList.add("disappear");
-            document.getElementById("card_more").classList.remove("appear");
-            document.getElementById("card_more").classList.add("disappear");
-            document.getElementById("card_description").classList.remove("appear");
-            document.getElementById("card_description").classList.add("disappear");
-            document.getElementById("card_picture").classList.remove("appear");
-            document.getElementById("card_picture").classList.add("disappear");
+            for(a=0; a<carousel.length; a++){
+                carousel[a].classList.remove("appear");
+                carousel[a].classList.add("disappear");
+            }
             setTimeout(function e(){
                 document.getElementById("count").innerHTML = (i+1) + '/' + pictures.length;
                 document.getElementById("card_title").innerHTML = '<b>'+pictures[i][0]+'</b>';
                 document.getElementById("card_more").innerHTML = '<b>'+pictures[i][1]+'</b>';
                 document.getElementById("card_description").innerHTML = pictures[i][2];
                 document.getElementById("card_picture").innerHTML = "<img src='" + pictures[i][3] + "' alt='" + pictures[i][0] + "' class='w-100'>";
-                // for(i=0; i<carousel.length; i++){
-                //     carousel[i].classList.remove("disappear");
-                //     carousel[i].classList.add("appear");
-                // }
-                document.getElementById("card_title").classList.remove("disappear");
-                document.getElementById("card_title").classList.add("appear");
-                document.getElementById("card_description").classList.remove("disappear");
-                document.getElementById("card_description").classList.add("appear");
-                document.getElementById("card_picture").classList.remove("disappear");
-                document.getElementById("card_picture").classList.add("appear");
-                document.getElementById("card_more").classList.remove("disappear");
-                document.getElementById("card_more").classList.add("appear");
+                for(a=0; a<carousel.length; a++){
+                    carousel[a].classList.remove("disappear");
+                    carousel[a].classList.add("appear");
+                }
             }, 700);
         }
+        function boucle(){
+            setTimeout(function(e){
+                    changeCard('right');
+                    boucle();
+            }, 7000);
+        }
+        window.onload = boucle();
     </script>
 {% endblock %}

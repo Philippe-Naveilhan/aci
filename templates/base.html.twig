@@ -18,15 +18,8 @@
         {% include 'footer.html.twig' %}
     </body>
     <script>
-        var ddd = 0;
         var imgMenu = document.getElementById("logo_menu")
         var logoCircle = document.getElementById("logo-circle")
-        window.addEventListener("scroll", function(a){
-            if(ddd===0){
-                alert(window.innerWidth);
-                ddd++;
-            }
-        })
         window.addEventListener('scroll', function(e) {
             if (window.scrollY > 200 && window.innerWidth > 700) {
                 if (!imgMenu.className.includes('is-reduce')) {
