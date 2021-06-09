@@ -114,9 +114,9 @@
                 document.getElementById("card_more").innerHTML = '<b>'+pictures[i][1]+'</b>';
                 document.getElementById("card_description").innerHTML = pictures[i][2];
                 document.getElementById("card_picture").innerHTML = "<img src='" + pictures[i][3] + "' alt='" + pictures[i][0] + "' class='w-100'>";
-                for(b=0; b<carousel.length; b++){
-                    carousel[b].classList.remove("disappear");
-                    carousel[b].classList.add("appear");
+                for(a=0; a<carousel.length; a++){
+                    carousel[a].classList.remove("disappear");
+                    carousel[a].classList.add("appear");
                 }
             }, 700);
         }
