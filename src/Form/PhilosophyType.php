@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class PhilosophyType extends AbstractType
 {
@@ -28,7 +29,9 @@ class PhilosophyType extends AbstractType
                 'download_uri' => true,
                 'download_link' => false,
             ])
-            ->add('text', TextareaType::class, [
+            ->add('text', CKEditorType::class, [
+                'input_sync' => true,
+                'label' => 'Texte de présentation',
                 'attr' => ['class'=>'formHeight2 col-12']
             ])
         ;

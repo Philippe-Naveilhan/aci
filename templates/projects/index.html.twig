@@ -83,30 +83,25 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-        let carousel = document.getElementsByClassName('move');
+        // Création d'un array avec les éléments amenés à être modifiés
+        let movingElements = document.getElementsByClassName('move');
+        // Création d'un array avec les pictures secondaires de la house
         let pictures = new Array();
         {% for picture in house.pictures %}
         pictures.push(["{{ picture.title|raw }}","{{ picture.more|raw }}","{{ picture.description }}","{{ asset('uploads/house/'~picture.picture)|imagine_filter('sizeOne') }}"]);
         {% endfor %}
+        // création du compteur
         let i = 0;
         document.getElementById("count").innerHTML = (i+1) + '/' + pictures.length;
         function changeCard(direction){
             if(direction=='right'){
-                if(i!==pictures.length-1){
-                    i++;
-                } else {
-                    i=0;
-                }
+                (i!==pictures.length-1)?i++:i=0;
             } else {
-                if(i!==0){
-                    i--;
-                } else {
-                    i = pictures.length-1;
-                }
+                (i!==0)?i--:i=pictures.length-1;
             }
-            for(a=0; a<carousel.length; a++){
-                carousel[a].classList.remove("appear");
-                carousel[a].classList.add("disappear");
+            for(a=0; a<movingElements.length; a++){
+                movingElements[a].classList.remove("appear");
+                movingElements[a].classList.add("disappear");
             }
             setTimeout(function e(){
                 document.getElementById("count").innerHTML = (i+1) + '/' + pictures.length;
@@ -114,9 +109,9 @@
                 document.getElementById("card_more").innerHTML = '<b>'+pictures[i][1]+'</b>';
                 document.getElementById("card_description").innerHTML = pictures[i][2];
                 document.getElementById("card_picture").innerHTML = "<img src='" + pictures[i][3] + "' alt='" + pictures[i][0] + "' class='w-100'>";
-                for(a=0; a<carousel.length; a++){
-                    carousel[a].classList.remove("disappear");
-                    carousel[a].classList.add("appear");
+                for(a=0; a<movingElements.length; a++){
+                    movingElements[a].classList.remove("disappear");
+                    movingElements[a].classList.add("appear");
                 }
             }, 700);
         }

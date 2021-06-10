@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Pictures;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +16,8 @@ class PicturesType extends AbstractType
         $builder
             ->add('title')
             ->add('more')
-            ->add('description', TextareaType::class, [
+            ->add('description', CKEditorType::class, [
+                'input_sync' => true,
                 'attr'=>['class'=>'formHeight2 col-12']
             ])
         ;
