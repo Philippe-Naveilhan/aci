@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\House;
 use App\Entity\Characteristic;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -22,7 +23,8 @@ class HouseType extends AbstractType
             ->add('zipcode')
             ->add('city')
             ->add('public')
-            ->add('description', TextareaType::class, [
+            ->add('description', CKEditorType::class, [
+                'input_sync' => true,
                 'attr' => ['class'=>'formHeight2 col-12']
             ])
             ->add('price')

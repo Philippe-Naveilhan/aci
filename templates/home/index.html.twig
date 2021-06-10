@@ -16,7 +16,7 @@
             <img src="{{ vich_uploader_asset(philosophy, 'leftPictureFile')|imagine_filter('sizeOne') }}" alt="Portait des collaborateurs du groupe">
         </div>
         <div class="line"></div>
-        <div class="text">{{ philosophy.text ?? 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto hic ipsum libero nam perferendis quas reprehenderit saepe totam, voluptas. Aliquam debitis dicta doloribus eveniet fuga modi similique, suscipit tenetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur autem consequuntur cumque dolor dolore doloremque eius eligendi libero maiores non nulla quidem quis sit tempora, tempore ullam ut voluptatem?' }}</div>
+        <div class="text">{{ philosophy.text ? philosophy.text|raw : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto hic ipsum libero nam perferendis quas reprehenderit saepe totam, voluptas. Aliquam debitis dicta doloribus eveniet fuga modi similique, suscipit tenetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur autem consequuntur cumque dolor dolore doloremque eius eligendi libero maiores non nulla quidem quis sit tempora, tempore ullam ut voluptatem?' }}</div>
         <div class="line"></div>
         <div class="img img-r">
             <img src="{{ vich_uploader_asset(philosophy, 'rightPictureFile')|imagine_filter('sizeOne') }}" alt="Portait des collaborateurs du groupe">
